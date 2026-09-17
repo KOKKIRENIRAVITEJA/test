@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    
+    <link rel="stylesheet" href="indexregistration.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div id="registerScreen">
+
+            <h2>Registration Form</h2>
+            
+            <form onsubmit="return valid()">
+
+                <label for="fname">Full Name</label>
+                <input type="text" id="fname" placeholder="Enter your name" required> 
+                <br> <br> 
+            
+                <label for="email">Email</label>
+                <input type="email" id="email"  placeholder="Enter your email" required>
+                <br> <br>
+            
+                <label for="pnumber">Phone Number</label>
+                <input type="tel" id="pnumber" placeholder="Enter phone number" required>
+                <br> <br>
+ 
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter password" required>
+                <br> <br> 
+            
+                <label for="cpassword">Confirm Password</label>
+                <input type="password" id="cpassword" placeholder="Confirm password" required>
+                <br> <br>
+
+                <div class="gender">
+                    <strong>Gender:</strong>
+                    <br><br>
+                
+                    <label>
+                        <input type="radio" name="gender" value="male"> Male
+                    </label>
+                
+                    <label>
+                        <input type="radio" name="gender" value="female"> Female
+                    </label>
+                
+                    <label>
+                        <input type="radio" name="gender" value="other"> Other
+                        </label>
+                    <br><br>
+
+
+                    <label>
+                        <input type="checkbox" id="terms">
+                        I accept the Terms & Conditions 
+                    </label>
+                </div>
+            
+                <br> <br>
+
+                <button  type="submit">Register</button>
+
+                <p id="message"></p>   
+            </form>
+        </div>
+    
+
+        <!-- Registration Successful Screen -->
+        <div id="successScreen">
+
+            <h2>Register</h2>
+
+            <div class="check"></div>
+
+                <p>Registration Successful.</p>
+
+                <button class="login-btn" onclick="showLogin()">
+                Login Now
+                </button>
+        </div>
+
+
+        <!-- Login Screen -->
+        <div id="loginScreen">
+
+            <h2>Login</h2>
+
+            <form onsubmit="return login()">
+
+                <label for="loginEmail">Email</label>
+                <input type="email" id="loginEmail" placeholder="Enter your email" required>
+
+                <br><br>
+
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" placeholder="Enter your password" required>
+
+                <br><br>
+
+                <button type="submit">Login</button>
+
+                <p id="loginMessage" class="login-message"></p>
+
+            </form>
+
+         </div>
+
+    </div>
+
+    <script>
+
+        function valid(){
+
+            let fullname = 
+                document.getElementById("fname").value;
+            
+            let email =
+                 document.getElementById("email").value;
+            
+            let phonenumber = 
+                document.getElementById("pnumber").value;
+            
+            let password = 
+                document.getElementById("password").value;
+            
+            let cpassword =
+                document.getElementById("cpassword").value;
+
+            //let genderElement  = document.getElementById("gender").value;
+            
+            let genderElement = 
+                document.querySelector(
+                'input[name="gender"]:checked');
+
+            // Don't use .value for <p>
+
+            let gender = genderElement ? genderElement.value : "";
+
+            let message = document.getElementById("message");
+                
+            let terms = document.getElementById("terms").checked;    
+
+            if (
+                fullname === "ravi" && 
+                email === "ravi@gmail.com" && 
+                phonenumber === "1234567890" && 
+                password === "ravi123" && 
+                cpassword === "ravi123" && 
+                gender === "male" &&
+                terms === true ) 
+                
+                {
+                /*
+                message.innerHTML = "Registration  Successfully Completed";
+                message.style.color = "green";*/
+
+                // Hide registration form
+                document.getElementById( "registerScreen").style.display = "none";
+
+                // Show success screen
+                document.getElementById("successScreen").style.display = "block";
+                }
+            
+            else {
+                message.innerHTML = "Enter Valid Credintials";
+                message.style.color = "red";
+            }
+
+            // Prevent form from refreshing the page
+            return false;
+        }
+
+        // Show Login Screen
+        function showLogin() {
+
+            document.getElementById("successScreen").style.display = "none";
+
+            document.getElementById("loginScreen").style.display = "block";
+        }
+
+
+        // Login validation
+        function login() {
+
+            let email =document.getElementById("loginEmail").value;
+
+            let password = document.getElementById("loginPassword").value;
+
+            let loginMessage = document.getElementById("loginMessage");
+
+
+            if (email === "ravi@gmail.com" && password === "ravi123") {
+
+                loginMessage.innerHTML ="Login Successful!";
+
+                loginMessage.style.color = "green";
+
+            }
+
+            else {
+
+                loginMessage.innerHTML ="Invalid Email or Password";
+
+                loginMessage.style.color = "red";
+
+            }
+
+            return false;
+        }
+
+    </script>
+
+</body>
+</html>

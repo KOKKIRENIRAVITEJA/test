@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+    <div class="card">
+        <h1>User Login</h1>
+
+        <label for="uname">Username:</label>
+        <input type="text" id="uname" placeholder="Enter Username">
+
+        <label for="pword">Password:</label>
+        <input type="password" id="pword" placeholder="Enter password">
+
+        <button onclick="validate()">Login</button>
+
+        <p>Don't have an account?  <a href="indexregistration.html">Sign up</a></p>
+
+        <p id="message"></p>
+    </div>
+
+    <script>
+        function validate() {
+            let username = document.getElementById("uname").value;
+            let password = document.getElementById("pword").value;
+
+            let message = document.getElementById("message");
+
+            if (username === "task" && password === "12345") {
+                message.innerHTML = "Login Success";
+                message.style.color = "green";
+            }
+            else {
+                message.innerHTML = "Enter Valid Username/Password";
+                message.style.color = "red";
+
+            }
+        }
+    </script>
+
+</body>
+</html>
